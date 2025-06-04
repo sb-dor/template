@@ -23,3 +23,34 @@ for running app in prod mode:
 or you can add to your Android Studio or VS code this additional run args:
 
     --dart-define-from-file=env/prod.json
+
+
+building releases:
+
+Android Apk:
+
+    flutter build apk --dart-define-from-file=env/prod.json
+
+Android Bundle:
+
+    flutter build appbundle --dart-define-from-file=env/prod.json
+
+iOS:
+
+    flutter build ios --dart-define-from-file=env/prod.json
+
+iOS IPA:
+
+    flutter build ipa --dart-define-from-file=env/prod.json
+
+Windows:
+
+    flutter build windows --dart-define-from-file=env/prod.json
+
+Linux:
+
+    flutter build linux --dart-define-from-file=env/prod.json
+
+MacOS:
+
+    flutter build macos --dart-define-from-file=env/prod.json
