@@ -5,6 +5,8 @@ abstract interface class IUpdateUserDataSource {
   Future<bool> updateUser({required String name, required String email});
 }
 
+// datasources can have try-catch only that time when it's necessary
+// otherwise it will be propagated till bloc -> blocObserver -> runZoneGuarded (if blocObserver does not propagate it further)
 final class UpdateUserDataSource implements IUpdateUserDataSource {
   UpdateUserDataSource({required this.logger, required this.restClientBase});
 
