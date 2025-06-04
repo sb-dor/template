@@ -5,9 +5,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:logger/logger.dart';
 import 'package:test_template/src/common/utils/bloc/bloc_observer_manager.dart';
+import 'package:test_template/src/common/utils/database/app_database.dart';
+import 'package:test_template/src/common/utils/dio/dio_client.dart';
 import 'package:test_template/src/common/utils/reusable_global_functions.dart';
+import 'package:test_template/src/common/utils/shared_preferences_helper.dart';
 import 'package:test_template/src/feature/initialization/logic/dependency_composition/dependency_composition.dart';
 import 'package:test_template/src/feature/initialization/logic/desktop_initializer.dart';
+import 'package:test_template/src/feature/initialization/models/application_config.dart';
 import 'package:test_template/src/feature/initialization/widgets/io_material_context.dart';
 import 'package:test_template/src/feature/initialization/widgets/web_material_context.dart';
 import 'dependency_composition/factories/app_logger_factory.dart';
@@ -52,7 +56,25 @@ class AppRunner {
           Bloc.transformer = sequential();
           Bloc.observer = BlocObserverManager(logger: logger);
 
-          final dependencyContainer = await DependencyComposition(logger: logger).create();
+          final ApplicationConfig applicationConfig = ApplicationConfig();
+          final sharedPreferHelper = SharedPreferencesHelper();
+          await sharedPreferHelper.initSharedPrefer();
+          final appDatabase = AppDatabase.defaults(
+            name: applicationConfig.databaseName, // name of the database
+          );
+          final RestClientBase restClientBase = RestClientDio(
+            logger: logger,
+            baseURL: String.fromEnvironment(applicationConfig.mainUrl),
+            sharedPreferHelper: sharedPreferHelper,
+          );
+
+          final dependencyContainer =
+              await DependencyComposition(
+                logger: logger,
+                sharedPreferencesHelper: sharedPreferHelper,
+                appDatabase: appDatabase,
+                restClientBase: restClientBase,
+              ).create();
 
           late final Widget materialContext;
 
