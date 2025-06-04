@@ -21,6 +21,7 @@ class _WebMaterialContextState extends State<WebMaterialContext> {
     return DependenciesScope(
       dependencies: widget.dependencyContainer,
       child: BlocDependenciesScope(
+        dependencyContainer: widget.dependencyContainer,
         child: MaterialApp(
           builder:
               (context, child) => MediaQuery(

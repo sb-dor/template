@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:test_template/src/feature/authentication/models/user.dart';
 import 'package:test_template/src/feature/initialization/logic/dependency_composition/factories/update_user_bloc_factory.dart';
+import 'package:test_template/src/feature/initialization/widgets/dependencies_scope.dart';
 import 'package:test_template/src/feature/update_user/bloc/update_user_bloc.dart';
 
 part 'update_user_widget.dart';
@@ -21,8 +22,13 @@ class _UpdateUserConfigWidgetState extends State<UpdateUserConfigWidget> {
   @override
   void initState() {
     super.initState();
-
-    _updateUserBloc = UpdateUserBlocFactory(user: widget.user).create();
+    final dependencies = DependenciesScope.of(context, listen: false);
+    _updateUserBloc =
+        UpdateUserBlocFactory(
+          user: widget.user,
+          restClientBase: dependencies.restClientBase,
+          logger: dependencies.logger,
+        ).create();
   }
 
   @override

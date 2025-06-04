@@ -1,8 +1,17 @@
+import 'package:logger/logger.dart';
+import 'package:test_template/src/common/utils/dio/dio_client.dart';
+
 abstract interface class IUpdateUserDataSource {
   Future<bool> updateUser({required String name, required String email});
 }
 
 final class UpdateUserDataSource implements IUpdateUserDataSource {
+
+  UpdateUserDataSource({required this.logger, required this.restClientBase});
+
+  final Logger logger;
+  final RestClientBase restClientBase;
+
   @override
   Future<bool> updateUser({required String name, required String email}) async {
     // Simulate a network call or database update

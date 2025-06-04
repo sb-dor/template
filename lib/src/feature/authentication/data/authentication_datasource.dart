@@ -1,3 +1,5 @@
+import 'package:logger/logger.dart';
+import 'package:test_template/src/common/utils/dio/dio_client.dart';
 import 'package:test_template/src/feature/authentication/models/user.dart';
 
 abstract interface class IAuthenticationDataSource {
@@ -9,6 +11,11 @@ abstract interface class IAuthenticationDataSource {
 }
 
 final class AuthenticationDataSource implements IAuthenticationDataSource {
+  AuthenticationDataSource({required this.logger, required this.restClientBase});
+
+  final Logger logger;
+  final RestClientBase restClientBase;
+
   @override
   Future<User?> getCurrentUser() async {
     // Simulate a network call or database query
