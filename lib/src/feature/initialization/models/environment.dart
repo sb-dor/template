@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 
+// is necessary if you are checking something for application (release) mode
 enum Environment {
   dev._('DEV'),
   prod._('PROD');
