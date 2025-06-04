@@ -27,6 +27,6 @@ or you can add to your Android Studio or VS code this additional run args:
 
 building releases:
 
-    flutter build apk --dart-define-from-file=env/prod.json
+    flutter build <platform> --dart-define-from-file=env/prod.json
 
 platforms: apk, appbundle, ios, ipa, windows, linux, macos
