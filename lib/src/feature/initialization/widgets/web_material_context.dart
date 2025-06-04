@@ -1,6 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:test_template/src/feature/authentication/widgets/authentication_config_widget.dart';
+import 'package:test_template/src/feature/authentication/widgets/authentication_widget.dart';
 import 'package:test_template/src/feature/initialization/models/dependency_container.dart';
 import 'package:test_template/src/feature/initialization/widgets/bloc_dependencies_scope.dart';
 import 'package:test_template/src/feature/initialization/widgets/dependencies_scope.dart';

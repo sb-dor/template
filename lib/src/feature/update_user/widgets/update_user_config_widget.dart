@@ -17,6 +17,10 @@ class UpdateUserConfigWidget extends StatefulWidget {
 }
 
 class _UpdateUserConfigWidgetState extends State<UpdateUserConfigWidget> {
+  // The reason of creating bloc here, not in MultiBlocProvider, is that
+  // after updating user, we need to close this bloc, because it is not needed anymore.
+  // Remember! that everytime when you create any bloc will be useful only for one screen,
+  // you should close it after using it, otherwise it will be in memory forever.
   late final UpdateUserBloc _updateUserBloc;
 
   @override
