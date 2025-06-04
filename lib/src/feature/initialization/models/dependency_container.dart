@@ -10,7 +10,7 @@ class DependencyContainer {
     required this.logger,
     required this.sharedPreferencesHelper,
     required this.appDatabase,
-    required this.restClientBase
+    required this.restClientBase,
   });
 
   final DeviceInfoPlugin deviceInfoPlugin;

@@ -3,11 +3,7 @@ import 'package:flutter/foundation.dart';
 
 @immutable
 sealed class RestClientException implements Exception {
-  const RestClientException({
-    required this.message,
-    this.statusCode,
-    this.cause,
-  });
+  const RestClientException({required this.message, this.statusCode, this.cause});
 
   //
   final String message;
@@ -16,16 +12,14 @@ sealed class RestClientException implements Exception {
 }
 
 final class StructuredBackendException extends RestClientException {
-  const StructuredBackendException({
-    required this.error,
-    super.statusCode,
-    super.cause,
-  }) : super(message: 'Backend returned structured error');
+  const StructuredBackendException({required this.error, super.statusCode, super.cause})
+    : super(message: 'Backend returned structured error');
 
   final Map<String, dynamic> error;
 
   @override
-  String toString() => 'StructuredBackendException('
+  String toString() =>
+      'StructuredBackendException('
       'message: $message '
       'cause: $cause, '
       'statusCode: $statusCode, '
@@ -34,14 +28,11 @@ final class StructuredBackendException extends RestClientException {
 
 // other exceptions that may happen in client side
 final class ClientException extends RestClientException {
-  const ClientException({
-    required super.message,
-    super.statusCode,
-    super.cause,
-  });
+  const ClientException({required super.message, super.statusCode, super.cause});
 
   @override
-  String toString() => 'ClientException('
+  String toString() =>
+      'ClientException('
       'message: $message, '
       'statusCode: $statusCode, '
       'cause: $cause'
@@ -49,16 +40,14 @@ final class ClientException extends RestClientException {
 }
 
 final class UnAuthenticatedException extends RestClientException {
-  const UnAuthenticatedException({
-    required this.dioException,
-    super.statusCode,
-    super.cause,
-  }) : super(message: "User is unauthenticated");
+  const UnAuthenticatedException({required this.dioException, super.statusCode, super.cause})
+    : super(message: "User is unauthenticated");
 
   final DioException dioException;
 
   @override
-  String toString() => 'StructuredBackendException('
+  String toString() =>
+      'StructuredBackendException('
       'message: $message | SERVER_ERROR: ${dioException.response?.data}'
       ' | ERROR: ${dioException.error}, '
       'cause: $cause, '
@@ -71,8 +60,8 @@ final class DioExceptionHandler {
   const DioExceptionHandler({
     required final DioException dioException,
     required final String serverError,
-  })  : _dioException = dioException,
-        _serverError = serverError;
+  }) : _dioException = dioException,
+       _serverError = serverError;
 
   final DioException _dioException;
   final String _serverError;

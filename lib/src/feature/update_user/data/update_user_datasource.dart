@@ -6,7 +6,6 @@ abstract interface class IUpdateUserDataSource {
 }
 
 final class UpdateUserDataSource implements IUpdateUserDataSource {
-
   UpdateUserDataSource({required this.logger, required this.restClientBase});
 
   final Logger logger;

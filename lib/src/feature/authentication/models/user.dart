@@ -10,19 +10,11 @@ class User {
   const User({required this.id, required this.email, this.name});
 
   User copyWith({String? id, String? email, String? name}) {
-    return User(
-      id: id ?? this.id,
-      email: email ?? this.email,
-      name: name ?? this.name,
-    );
+    return User(id: id ?? this.id, email: email ?? this.email, name: name ?? this.name);
   }
 
   Map<String, dynamic> toJson() {
-    return <String, dynamic>{
-      'id': id,
-      'email': email,
-      'name': name,
-    };
+    return <String, dynamic>{'id': id, 'email': email, 'name': name};
   }
 
   factory User.fromJson(Map<String, dynamic> map) {
