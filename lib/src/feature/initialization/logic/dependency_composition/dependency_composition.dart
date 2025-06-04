@@ -22,7 +22,7 @@ final class DependencyComposition extends AsyncFactory<DependencyContainer> {
   @override
   Future<DependencyContainer> create() async {
     final deviceInfoPlugin = DeviceInfoPlugin();
-    
+
     return DependencyContainer(
       deviceInfoPlugin: deviceInfoPlugin,
       logger: logger,
