@@ -22,10 +22,7 @@ final class DependencyComposition extends AsyncFactory<DependencyContainer> {
   @override
   Future<DependencyContainer> create() async {
     final deviceInfoPlugin = DeviceInfoPlugin();
-    final sharedPreferencesHelper = SharedPreferencesHelper();
-    await sharedPreferencesHelper.initSharedPrefer();
-    final appDatabase = AppDatabase.defaults(name: "test_template.db"); // name of the database
-
+    
     return DependencyContainer(
       deviceInfoPlugin: deviceInfoPlugin,
       logger: logger,
