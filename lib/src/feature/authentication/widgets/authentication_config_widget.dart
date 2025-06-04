@@ -14,7 +14,16 @@ class AuthenticationConfigWidget extends StatefulWidget {
 }
 
 class _AuthenticationConfigWidgetState extends State<AuthenticationConfigWidget> {
+
+  // if you have a bloc that should be closed when the widget is disposed
+  // you can do something like this:
+
   // late final AuthenticationBloc _authenticationBloc;
+
+
+  // But If you want to use a bloc that will be used for entire app, you have to register your bloc
+  // in MultipleBlocProvider in before using MaterialApp.
+
 
   @override
   void initState() {
