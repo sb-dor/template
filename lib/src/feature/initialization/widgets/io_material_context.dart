@@ -62,7 +62,7 @@ class _IoMaterialContextState extends State<IoMaterialContext> with WindowListen
                 ),
                 child: child!,
               ),
-          home: AuthenticationConfigWidget(),
+          home: AuthenticationWidget(),
           debugShowCheckedModeBanner: !kReleaseMode,
           theme: ThemeData(
             pageTransitionsTheme: PageTransitionsTheme(builders: fadeTransitionPlatforms),

@@ -30,7 +30,7 @@ class _WebMaterialContextState extends State<WebMaterialContext> {
                 child: child!,
               ),
           debugShowCheckedModeBanner: !kReleaseMode,
-          home: AuthenticationConfigWidget(),
+          home: AuthenticationWidget(),
         ),
       ),
     );
