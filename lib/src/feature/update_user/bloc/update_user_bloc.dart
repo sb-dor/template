@@ -60,10 +60,15 @@ class UpdateUserBloc extends Bloc<UpdateUserEvent, UpdateUserState> {
   }
 
   void _updateUserEvent(_UpdateUserEvent event, Emitter<UpdateUserState> emit) async {
-    emit(UpdateUserState.inProgress(state.user));
-    final success = await _updateUserRepository.updateUser(name: event.name, email: event.email);
-    if (success) {
-      emit(UpdateUserState.completed(state.user));
+    try {
+      emit(UpdateUserState.inProgress(state.user));
+      final success = await _updateUserRepository.updateUser(name: event.name, email: event.email);
+      if (success) {
+        emit(UpdateUserState.completed(state.user));
+      }
+    } catch (error, stackTrace) {
+      emit(UpdateUserState.failure(state.user, message: error.toString()));
+      Error.throwWithStackTrace(error, stackTrace);
     }
   }
 }

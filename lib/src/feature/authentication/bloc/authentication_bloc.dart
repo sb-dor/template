@@ -72,50 +72,65 @@ class AuthenticationBloc extends Bloc<AuthenticationEvent, AuthenticationState> 
     _AuthenticationGetCurrentUser event,
     Emitter<AuthenticationState> emit,
   ) async {
-    // Handle get current user logic
-    emit(AuthenticationState.inProgress(state.stateModel));
-    // Simulate some initial logic
-    final user = await _authenticationRepository.getCurrentUser();
+    try {
+      // Handle get current user logic
+      emit(AuthenticationState.inProgress(state.stateModel));
+      // Simulate some initial logic
+      final user = await _authenticationRepository.getCurrentUser();
 
-    final currentStateModel = state.stateModel.copyWith(user: user);
+      final currentStateModel = state.stateModel.copyWith(user: user);
 
-    if (user != null) {
-      // If user exists, emit authenticated state
-      emit(AuthenticationState.authenticated(currentStateModel));
-    } else {
-      // If no user exists, emit unauthenticated state
-      emit(AuthenticationState.unauthenticated(currentStateModel));
+      if (user != null) {
+        // If user exists, emit authenticated state
+        emit(AuthenticationState.authenticated(currentStateModel));
+      } else {
+        // If no user exists, emit unauthenticated state
+        emit(AuthenticationState.unauthenticated(currentStateModel));
+      }
+    } catch (error, stackTrace) {
+      emit(AuthenticationState.failure(state.stateModel, message: error.toString()));
+      Error.throwWithStackTrace(error, stackTrace);
     }
   }
 
   void _authenticationSignIn(_AuthenticationSignIn event, Emitter<AuthenticationState> emit) async {
-    emit(AuthenticationState.inProgress(state.stateModel));
+    try {
+      emit(AuthenticationState.inProgress(state.stateModel));
 
-    final user = await _authenticationRepository.signIn(
-      email: event.email,
-      password: event.password,
-    );
+      final user = await _authenticationRepository.signIn(
+        email: event.email,
+        password: event.password,
+      );
 
-    final currentStateModel = state.stateModel.copyWith(user: user);
+      final currentStateModel = state.stateModel.copyWith(user: user);
 
-    if (user != null) {
-      // If user exists, emit authenticated state
-      emit(AuthenticationState.authenticated(currentStateModel));
-    } else {
-      // If no user exists, emit unauthenticated state
-      emit(AuthenticationState.unauthenticated(currentStateModel));
+      if (user != null) {
+        // If user exists, emit authenticated state
+        emit(AuthenticationState.authenticated(currentStateModel));
+      } else {
+        // If no user exists, emit unauthenticated state
+        emit(AuthenticationState.unauthenticated(currentStateModel));
+      }
+    } catch (error, stackTrace) {
+      emit(AuthenticationState.failure(state.stateModel, message: error.toString()));
+      Error.throwWithStackTrace(error, stackTrace);
     }
   }
 
   void _authenticationSignOut(AuthenticationEvent event, Emitter<AuthenticationState> emit) async {
-    // Handle sign-out logic
-    emit(AuthenticationState.inProgress(state.stateModel));
-    // Simulate some sign-out logic
-    final success = await _authenticationRepository.signOut();
+    try {
+      // Handle sign-out logic
+      emit(AuthenticationState.inProgress(state.stateModel));
+      // Simulate some sign-out logic
+      final success = await _authenticationRepository.signOut();
 
-    if (success) {
-      // After sign-out logic, emit unauthenticated state
-      emit(AuthenticationState.unauthenticated(state.stateModel));
+      if (success) {
+        // After sign-out logic, emit unauthenticated state
+        emit(AuthenticationState.unauthenticated(state.stateModel));
+      }
+    } catch (error, stackTrace) {
+      emit(AuthenticationState.failure(state.stateModel, message: error.toString()));
+      Error.throwWithStackTrace(error, stackTrace);
     }
   }
 }
