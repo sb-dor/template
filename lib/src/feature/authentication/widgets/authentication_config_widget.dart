@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:test_template/src/common/ui_kit/circular_progress_indicator_widget.dart';
+import 'package:test_template/src/common/ui_kit/refresh_indicator_widget.dart';
 import 'package:test_template/src/feature/authentication/bloc/authentication_bloc.dart';
 
 part "authentication_widget.dart";
