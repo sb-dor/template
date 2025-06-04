@@ -1,16 +1,10 @@
-# test_template
+### 📚 More on Flutter & Dart Architecture
 
-A new Flutter project.
+If you're interested in learning more about Flutter and Dart architecture best practices, here are some valuable resources:
 
-## Getting Started
+- [plugfox.dev](https://plugfox.dev/) – Articles and insights on scalable Flutter architecture and tooling  
+- [hawkkiller on GitHub](https://github.com/hawkkiller) – Advanced Flutter projects and open-source libraries  
+- [sizzle_starter](https://github.com/hawkkiller/sizzle_starter) – A solid starter template for clean Flutter architecture  
+- [flutteris.com/blog](https://flutteris.com/blog) – Blog posts on practical Flutter development techniques  
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+These links offer great guidance on writing maintainable, scalable, and well-architected Flutter apps.
