@@ -3,11 +3,11 @@ import 'package:flutter/foundation.dart';
 
 @immutable
 class User {
+  const User({required this.id, required this.email, this.name});
+
   final String id;
   final String email;
   final String? name;
-
-  const User({required this.id, required this.email, this.name});
 
   User copyWith({String? id, String? email, String? name}) {
     return User(id: id ?? this.id, email: email ?? this.email, name: name ?? this.name);
