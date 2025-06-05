@@ -21,6 +21,8 @@ import 'package:flutter_native_splash/flutter_native_splash.dart';
 class AppRunner {
   //
   Future<void> initialize() async {
+    final ApplicationConfig applicationConfig = ApplicationConfig();
+
     final logger =
         AppLoggerFactory(logFilter: kReleaseMode ? NoOpLogFilter() : DevelopmentFilter()).create();
     //
@@ -59,12 +61,10 @@ class AppRunner {
           Bloc.transformer = SequentialBlocTransformer<Object?>().transform;
           Bloc.observer = BlocObserverManager(logger: logger);
 
-          final ApplicationConfig applicationConfig = ApplicationConfig();
           final sharedPreferHelper = SharedPreferencesHelper();
           await sharedPreferHelper.initSharedPrefer();
-          final appDatabase = AppDatabase.defaults(
-            name: applicationConfig.databaseName, // name of the database
-          );
+          final appDatabase = AppDatabase.defaults(name: applicationConfig.databaseName);
+
           final RestClientBase restClientBase = RestClientDio(
             logger: logger,
             baseURL: String.fromEnvironment(applicationConfig.mainUrl),
@@ -79,15 +79,15 @@ class AppRunner {
                 restClientBase: restClientBase,
               ).create();
 
-          late final Widget materialContext;
+          late final Widget rootContext;
 
           if (kIsWeb || kIsWasm) {
-            materialContext = WebMaterialContext(dependencyContainer: dependencyContainer);
+            rootContext = WebMaterialContext(dependencyContainer: dependencyContainer);
           } else {
-            materialContext = IoMaterialContext(dependencyContainer: dependencyContainer);
+            rootContext = IoMaterialContext(dependencyContainer: dependencyContainer);
           }
 
-          runApp(materialContext);
+          runApp(rootContext);
         } catch (error) {
           rethrow;
         } finally {
