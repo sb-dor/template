@@ -28,17 +28,17 @@ sealed class UpdateUserState with _$UpdateUserState {
   const factory UpdateUserState.completed(final User user) = UserUpdateCompletedState;
 }
 
+// About Coupling (Computer programming):
+// 1) https://www.youtube.com/live/AV_4aVOKl-g?si=REBxZ0xBm48Md4zI
+// 2) https://www.youtube.com/live/JNA481-HedU?si=gai4Gl_Hw6bHAiOP
+//
+// ARTICLES:
+// 1) https://en.wikipedia.org/wiki/Coupling_(computer_programming)
+// 2) https://plugfox.dev/business-logic-component-1/
+// 3) https://plugfox.dev/business-logic-component-2/   (scroll down to the end of the article, you will see the structure of the app architecture)
+// 4) https://plugfox.dev/business-logic-component-3/
+// 5) https://plugfox.dev/business-logic-component-4/
 class UpdateUserBloc extends Bloc<UpdateUserEvent, UpdateUserState> {
-  // About Coupling (Computer programming):
-  // 1) https://www.youtube.com/live/AV_4aVOKl-g?si=REBxZ0xBm48Md4zI
-  // 2) https://www.youtube.com/live/JNA481-HedU?si=gai4Gl_Hw6bHAiOP
-  //
-  // ARTICLES:
-  // 1) https://en.wikipedia.org/wiki/Coupling_(computer_programming)
-  // 2) https://plugfox.dev/business-logic-component-1/
-  // 3) https://plugfox.dev/business-logic-component-2/   (scroll down to the end of the article, you will see the structure of the app architecture)
-  // 4) https://plugfox.dev/business-logic-component-3/
-  // 5) https://plugfox.dev/business-logic-component-4/
   UpdateUserBloc({
     required IUpdateUserRepository updateUserRepository,
     required IAuthenticationRepository authenticationRepository,
