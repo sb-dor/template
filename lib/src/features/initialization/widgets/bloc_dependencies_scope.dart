@@ -19,6 +19,7 @@ class BlocDependenciesScope extends StatelessWidget {
                   AuthenticationBlocFactory(
                     logger: dependencyContainer.logger,
                     restClientBase: dependencyContainer.restClientBase,
+                    authenticationRepository: dependencyContainer.authenticationRepository,
                   ).create(),
         ),
       ],

@@ -33,6 +33,7 @@ class _UpdateUserConfigWidgetState extends State<UpdateUserConfigWidget> {
           user: widget.user,
           restClientBase: dependencies.restClientBase,
           logger: dependencies.logger,
+          authenticationRepository: dependencies.authenticationRepository,
         ).create();
   }
 

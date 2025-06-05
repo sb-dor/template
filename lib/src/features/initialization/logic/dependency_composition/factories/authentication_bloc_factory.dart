@@ -9,30 +9,40 @@ import 'package:test_template/src/features/authentication/data/datasource/authen
 import 'package:test_template/src/features/initialization/logic/dependency_composition/factories/factory.dart';
 
 final class AuthenticationBlocFactory extends Factory<AuthenticationBloc> {
-  AuthenticationBlocFactory({required this.logger, required this.restClientBase});
+  AuthenticationBlocFactory({
+    required this.logger,
+    required this.restClientBase,
+    required this.authenticationRepository,
+  });
 
   final Logger logger;
   final RestClientBase restClientBase;
+  final IAuthenticationRepository authenticationRepository;
 
   @override
   AuthenticationBloc create() {
-    final IAuthenticationDataSource authenticationRemoteDataSource = AuthenticationRemoteDataSource(
-      logger: logger,
-      restClientBase: restClientBase,
-    );
+    // you can create same repository twice, it doesn't take too much memory
+    // because Dart clears the memory of unused objects when it needs to
+    // so, that it why you can create the same AuthRepository here
+    // or you can create that inside DependencyContainer and use that repository everywhere it's needed
 
-    final IAuthenticationDataSource autenticationLocalDataSource = AuthenticationLocalDatasource(
-      logger: logger,
-    );
+    // final IAuthenticationDataSource authenticationRemoteDataSource = AuthenticationRemoteDataSource(
+    //   logger: logger,
+    //   restClientBase: restClientBase,
+    // );
 
-    final IAuthenticationRepository repository = AuthenticationRepository(
-      authenticationRemoteDataSource: authenticationRemoteDataSource,
-      authenticationLocalDataSource: autenticationLocalDataSource,
+    // final IAuthenticationDataSource autenticationLocalDataSource = AuthenticationLocalDatasource(
+    //   logger: logger,
+    // );
 
-      // it's a singleton, so no need to pass it from the container
-      internetConnection: InternetConnection(),
-    );
+    // final IAuthenticationRepository authenticationRepository = AuthenticationRepository(
+    //   authenticationRemoteDataSource: authenticationRemoteDataSource,
+    //   authenticationLocalDataSource: autenticationLocalDataSource,
 
-    return AuthenticationBloc(authenticationRepository: repository);
+    //   // it's a singleton, so no need to pass it from the container
+    //   internetConnection: InternetConnection(),
+    // );
+
+    return AuthenticationBloc(authenticationRepository: authenticationRepository);
   }
 }

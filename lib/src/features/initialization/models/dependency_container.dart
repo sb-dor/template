@@ -3,6 +3,7 @@ import 'package:logger/logger.dart';
 import 'package:test_template/src/common/utils/database/app_database.dart';
 import 'package:test_template/src/common/utils/dio/dio_client.dart';
 import 'package:test_template/src/common/utils/shared_preferences_helper.dart';
+import 'package:test_template/src/features/authentication/data/authentication_repository.dart';
 
 class DependencyContainer {
   DependencyContainer({
@@ -11,6 +12,7 @@ class DependencyContainer {
     required this.sharedPreferencesHelper,
     required this.appDatabase,
     required this.restClientBase,
+    required this.authenticationRepository,
   });
 
   final DeviceInfoPlugin deviceInfoPlugin;
@@ -18,4 +20,5 @@ class DependencyContainer {
   final SharedPreferencesHelper sharedPreferencesHelper;
   final AppDatabase appDatabase;
   final RestClientBase restClientBase;
+  final IAuthenticationRepository authenticationRepository;
 }

@@ -3,6 +3,7 @@ import 'package:logger/logger.dart';
 import 'package:test_template/src/common/utils/database/app_database.dart';
 import 'package:test_template/src/common/utils/dio/dio_client.dart';
 import 'package:test_template/src/common/utils/shared_preferences_helper.dart';
+import 'package:test_template/src/features/initialization/logic/dependency_composition/factories/auth_repository_factory.dart';
 import 'package:test_template/src/features/initialization/logic/dependency_composition/factories/factory.dart';
 import 'package:test_template/src/features/initialization/models/dependency_container.dart';
 
@@ -23,12 +24,16 @@ final class DependencyComposition extends AsyncFactory<DependencyContainer> {
   Future<DependencyContainer> create() async {
     final deviceInfoPlugin = DeviceInfoPlugin();
 
+    final iAuthRepository =
+        AuthRepositoryFactory(logger: logger, restClientBase: restClientBase).create();
+
     return DependencyContainer(
       deviceInfoPlugin: deviceInfoPlugin,
       logger: logger,
       sharedPreferencesHelper: sharedPreferencesHelper,
       appDatabase: appDatabase,
       restClientBase: restClientBase,
+      authenticationRepository: iAuthRepository,
     );
   }
 }

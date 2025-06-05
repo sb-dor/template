@@ -1,5 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:test_template/src/features/authentication/data/authentication_repository.dart';
 import 'package:test_template/src/features/authentication/models/user.dart';
 import 'package:test_template/src/features/update_user/data/update_user_repository.dart';
 
@@ -28,9 +29,13 @@ sealed class UpdateUserState with _$UpdateUserState {
 }
 
 class UpdateUserBloc extends Bloc<UpdateUserEvent, UpdateUserState> {
-  UpdateUserBloc({required IUpdateUserRepository updateUserRepository, required initialState})
-    : _updateUserRepository = updateUserRepository,
-      super(initialState) {
+  UpdateUserBloc({
+    required IUpdateUserRepository updateUserRepository,
+    required IAuthenticationRepository authenticationRepository,
+    required initialState,
+  }) : _updateUserRepository = updateUserRepository,
+       _authenticationRepository = authenticationRepository,
+       super(initialState) {
     //
     //
     // Bloc should have only one event handler.
@@ -54,6 +59,11 @@ class UpdateUserBloc extends Bloc<UpdateUserEvent, UpdateUserState> {
   }
 
   final IUpdateUserRepository _updateUserRepository;
+
+  // if you need a logic that is written in another repository, but you don't want to
+  // rewrite same logic in current repository, you can just import that repository from another feature
+  // Note: it's not necessary for this Bloc but in order to bring the example closer to real-world usage, I added it
+  final IAuthenticationRepository _authenticationRepository;
 
   void _updateUserInitialEvent(_UpdateUserInitialEvent event, Emitter<UpdateUserState> emit) {
     emit(UpdateUserState.initial(state.user));
