@@ -66,7 +66,7 @@ class AppRunner {
 
           final RestClientBase restClientBase = RestClientDio(
             logger: logger,
-            baseURL: String.fromEnvironment(applicationConfig.mainUrl),
+            baseURL: applicationConfig.mainUrl,
             sharedPreferHelper: sharedPreferHelper,
           );
 
