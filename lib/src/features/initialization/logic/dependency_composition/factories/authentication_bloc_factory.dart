@@ -17,6 +17,10 @@ final class AuthenticationBlocFactory extends Factory<AuthenticationBloc> {
 
   final Logger logger;
   final RestClientBase restClientBase;
+
+  // so we did not create same repository twice
+  // we created that once and set that inside DependencyContainer
+  // and through DependencyContainer we can access that repository
   final IAuthenticationRepository authenticationRepository;
 
   @override
