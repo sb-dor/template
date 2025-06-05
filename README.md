@@ -11,8 +11,7 @@ These links offer great guidance on writing maintainable, scalable, and well-arc
 
 ------
 
-The funniest part is when people add .env files with secrets to .gitignore - but then still include them in the app’s assets. (adding inside asset folder and then including them inside pubspec.yaml)
-And to make it worse, the app is also being built for the web.
+The funniest part is when people add .env files with secrets to .gitignore - but then still include them in the app’s assets (adding inside asset folder and then including them inside pubspec.yaml). And to make it worse, the app is also being built for the web.
 
 That’s exactly why using "--dart-define" and structured env files is the safer approach. If you ever decide to build a web version of your app in the future, having secrets exposed in the assets could become a serious security risk. Keeping config values outside the source and passing them at build time is the right way to go.
 
