@@ -7,6 +7,9 @@ abstract interface class IUpdateUserDataSource {
 
 // datasources can have try-catch only that time when it's necessary
 // otherwise it will be propagated to bloc -> blocObserver -> runZoneGuarded (if blocObserver does not propagate it further)
+
+// more info about Error handling:
+// https://lazebny.io/mastering-error-handling/
 final class UpdateUserDataSource implements IUpdateUserDataSource {
   UpdateUserDataSource({required this.logger, required this.restClientBase});
 
