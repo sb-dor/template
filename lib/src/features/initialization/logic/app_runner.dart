@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:logger/logger.dart';
 import 'package:test_template/src/common/utils/bloc/bloc_observer_manager.dart';
+import 'package:test_template/src/common/utils/bloc/bloc_transformer.dart';
 import 'package:test_template/src/common/utils/database/app_database.dart';
 import 'package:test_template/src/common/utils/dio/dio_client.dart';
 import 'package:test_template/src/common/utils/reusable_global_functions.dart';
@@ -53,7 +54,9 @@ class AppRunner {
 
         try {
           // bloc concurrency -> should always be sequential -> Pub/sub pattern
-          Bloc.transformer = sequential();
+          // for more about other concurrency patterns, see https://pub.dev/packages/bloc_concurrency
+          // but for now we do not need any pacakge, so we use our created transformer
+          Bloc.transformer = SequentialBlocTransformer<Object?>().transform;
           Bloc.observer = BlocObserverManager(logger: logger);
 
           final ApplicationConfig applicationConfig = ApplicationConfig();

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:test_template/src/features/authentication/bloc/authentication_bloc.dart';
 import 'package:test_template/src/features/authentication/models/user.dart';
 import 'package:test_template/src/features/initialization/logic/dependency_composition/factories/update_user_bloc_factory.dart';
 import 'package:test_template/src/features/initialization/widgets/dependencies_scope.dart';

@@ -32,6 +32,7 @@ class _UpdateUserWidgetState extends State<_UpdateUserWidget> {
     return BlocListener<UpdateUserBloc, UpdateUserState>(
       listener: (context, state) {
         if (state is UserUpdateCompletedState) {
+          context.read<AuthenticationBloc>().add(AuthenticationEvent.getCurrentUser());
           Navigator.pop(context);
         }
       },
