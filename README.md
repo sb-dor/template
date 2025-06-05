@@ -28,7 +28,7 @@ for running app in prod mode:
 
 or you can add to your Android Studio or VS code this additional run args:
 
-    --dart-define-from-file=env/prod.json
+    --dart-define-from-file=env/dev.json
 
 
 building releases:
