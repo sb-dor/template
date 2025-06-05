@@ -1,11 +1,7 @@
-import 'package:internet_connection_checker_plus/internet_connection_checker_plus.dart';
 import 'package:logger/logger.dart';
 import 'package:test_template/src/common/utils/dio/dio_client.dart';
 import 'package:test_template/src/features/authentication/bloc/authentication_bloc.dart';
-import 'package:test_template/src/features/authentication/data/datasource/authentication_datasource.dart';
 import 'package:test_template/src/features/authentication/data/authentication_repository.dart';
-import 'package:test_template/src/features/authentication/data/datasource/authentication_local_datasource.dart';
-import 'package:test_template/src/features/authentication/data/datasource/authentication_remote_datasource.dart';
 import 'package:test_template/src/features/initialization/logic/dependency_composition/factories/factory.dart';
 
 final class AuthenticationBlocFactory extends Factory<AuthenticationBloc> {

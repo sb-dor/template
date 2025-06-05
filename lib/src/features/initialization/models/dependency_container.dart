@@ -5,7 +5,6 @@ import 'package:test_template/src/common/utils/dio/dio_client.dart';
 import 'package:test_template/src/common/utils/shared_preferences_helper.dart';
 import 'package:test_template/src/features/authentication/data/authentication_repository.dart';
 
-
 // for more info about dependency injection, take a look at:
 // 1. https://www.youtube.com/live/NiolORe9B4w?si=w8zj6zXNm5g4YuR-
 class DependencyContainer {
