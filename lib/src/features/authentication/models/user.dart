@@ -1,4 +1,5 @@
 import 'package:flutter/foundation.dart';
+import 'package:test_template/src/common/utils/database/app_database.dart';
 
 @immutable
 class User {
@@ -21,6 +22,14 @@ class User {
       id: map['id'] as String,
       email: map['email'] as String,
       name: map['name'] as String?,
+    );
+  }
+
+  factory User.fromUserTable(UsersTableData userTableData) {
+    return User(
+      id: userTableData.id.toString(),
+      email: userTableData.email,
+      name: userTableData.name,
     );
   }
 

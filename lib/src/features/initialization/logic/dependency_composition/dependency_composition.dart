@@ -25,7 +25,11 @@ final class DependencyComposition extends AsyncFactory<DependencyContainer> {
     final deviceInfoPlugin = DeviceInfoPlugin();
 
     final iAuthRepository =
-        AuthRepositoryFactory(logger: logger, restClientBase: restClientBase).create();
+        AuthRepositoryFactory(
+          logger: logger,
+          restClientBase: restClientBase,
+          appDatabase: appDatabase,
+        ).create();
 
     return DependencyContainer(
       deviceInfoPlugin: deviceInfoPlugin,
